@@ -1,12 +1,28 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact } from "./contactsOps";
-import { selectNameFilter } from "./filtersSlice";
+import { fetchContacts, addContact, deleteContact, editContact } from "./contactsOps";
+import { selectNameFilter } from "../filters/filtersSlice";
+import { logOut } from "../auth/authOps";
 
 const contactsSlice = createSlice({
     name: "contacts",
-    initialState: {items: [],
+    initialState: {
+        items: [],
         loading: false,
         error: false,
+        isModalOpen: false,  
+        editingContact: null,
+        },
+    
+        reducers: {
+            openModal: (state, action) => {
+                // console.log("Modal opened with contact:", action.payload);
+                state.isModalOpen = true;
+                state.editingContact = action.payload;
+            },
+            closeModal: (state) => {
+                state.isModalOpen = false;
+                state.editingContact = null;
+            },
         },
 
     extraReducers: (builder) => {
@@ -37,15 +53,38 @@ const contactsSlice = createSlice({
         }).addCase(deleteContact.rejected, (state) => {
             state.loading = false;
             state.error = true;
+        }).addCase(logOut.fulfilled, (state) => {
+            state.items = [];
+            state.error = null;
+            state.loading = false;
+        }).addCase(editContact.pending, (state) => {
+            state.loading = true;
+            state.error = false;
+        }).addCase(editContact.fulfilled, (state, action) => {
+            const index = state.items.findIndex(contact => contact.id === action.payload.id);
+            if(index !== -1) {
+                state.items[index] = action.payload;
+            }
+        
+            state.loading = false;
+        }).addCase(editContact.rejected, (state) => {
+            state.loading = false;
+            state.error = true;
         })
     },
 });
+
+export const selectIsModalOpen = (state) => state.contacts.isModalOpen;
+
+export const selectEditingContact = (state) => state.contacts.editingContact;
 
 export const selectContacts = (state) => state.contacts.items;
 
 export const selectLoading = (state) => state.contacts.loading;
 
 export const selectError = (state) => state.contacts.error;
+
+export const { openModal, closeModal } = contactsSlice.actions;
 
 export const selectFilteredContacts = createSelector(
     [selectContacts, selectNameFilter], 

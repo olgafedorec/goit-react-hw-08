@@ -1,12 +1,17 @@
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
+import toast, { Toaster } from "react-hot-toast";
+import { addContact } from '../../redux/contacts/contactsOps';
 import css from './ContactForm.module.css';
-
 
 export const ContactForm = () => {
     const dispatch = useDispatch();
     const handleSubmit = (values, actions) => {
+      const { name, number } = values;
+      if(!name.trim() || !number.trim()) {
+        toast.error('All fields are required!');
+        return;
+      }
       dispatch(addContact(values));
       actions.resetForm();
    }
@@ -27,7 +32,8 @@ export const ContactForm = () => {
        <label >Number</label>
        <Field className={css.input} type="text" name="number" />
        </div>
-        <button type="submit">Add contact</button>  
+        <button type="submit" className={css.button}>Add contact</button>
+        <Toaster/>
             </Form>
            </Formik>
     )
