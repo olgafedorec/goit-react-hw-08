@@ -63,7 +63,6 @@ const contactsSlice = createSlice({
             if(index !== -1) {
                 state.items[index] = action.payload;
             }
-        
             state.loading = false;
         }).addCase(editContact.rejected, (state) => {
             state.loading = false;

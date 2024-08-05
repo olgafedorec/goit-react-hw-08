@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { lazy, Suspense, useEffect } from 'react';
-// import AppBar from '../AppBar/AppBar';
 import Layout from '../Layout/Layout';
 import { Route, Routes } from "react-router-dom";
 import { refreshUser } from '../../redux/auth/operations';
@@ -8,14 +7,6 @@ import { selectIsRefreshing } from '../../redux/auth/selectors';
 import { Loader } from '../Loader/Loader';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
-// import { ContactForm } from '../ContactForm/ContactForm';
-// import { Loader } from '../Loader/Loader';
-// import { Error } from '../Error/Error';
-// import { ContactList } from '../ContactList/ContactList';
-// import { SearchBox } from '../SearchBox/SearchBox';
-// import { fetchContacts } from '../../redux/contacts/contactsOps';
-// import { selectLoading, selectError } from '../../redux/contacts/contactsSlice';
-// import css from "./App.module.css";
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
