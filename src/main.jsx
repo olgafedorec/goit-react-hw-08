@@ -11,10 +11,7 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor} onBeforeLift={() => {
-        const state = store.getState();
-        console.log("token after refreshing", state.auth.token);
-      }}>
+      <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
