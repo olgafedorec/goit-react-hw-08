@@ -5,8 +5,8 @@ import { ContactForm } from "../../components/ContactForm/ContactForm";
 import { SearchBox } from '../../components/SearchBox/SearchBox';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import { fetchContacts } from '../../redux/contacts/contactsOps';
-import { selectLoading, selectError } from '../../redux/contacts/contactsSlice';
+import { fetchContacts } from '../../redux/contacts/operations';
+import { selectLoading, selectError } from '../../redux/contacts/selectors';
 
 export default function ContactsPage() {
       const dispatch = useDispatch();

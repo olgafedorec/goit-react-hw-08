@@ -2,10 +2,11 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from 'yup';
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { register } from "../../redux/auth/authOps";
+import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 
 const validationSchema = Yup.object({
+  name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
 });
@@ -18,6 +19,8 @@ export default function RegistrationForm() {
     if(!name.trim() || !email.trim() || !password.trim()) {
       toast.error('All fields are required!');
       return;
+    } else {
+     toast.success('You`ve successfully registered!');
     }
     dispatch(register(values));
     actions.resetForm();

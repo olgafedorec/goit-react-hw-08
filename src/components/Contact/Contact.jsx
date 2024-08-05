@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/contactsOps';
-import { openModal } from '../../redux/contacts/contactsSlice';
+import { deleteContact } from '../../redux/contacts/operations';
+import { openModal } from '../../redux/contacts/slice';
 import ContactModal from '../ContactModal/ContactModal';
 import css from './Contact.module.css';
 import { BsFillPersonFill, BsFillTelephoneFill } from "react-icons/bs";

@@ -3,8 +3,8 @@ import { lazy, Suspense, useEffect } from 'react';
 // import AppBar from '../AppBar/AppBar';
 import Layout from '../Layout/Layout';
 import { Route, Routes } from "react-router-dom";
-import { refreshUser } from '../../redux/auth/authOps';
-import { selectIsRefreshing } from '../../redux/auth/authSelectors';
+import { refreshUser } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/selectors';
 import { Loader } from '../Loader/Loader';
 import RestrictedRoute from '../RestrictedRoute';
 import PrivateRoute from '../PrivateRoute';
@@ -24,30 +24,6 @@ const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("../../pages/RegisterPage/RegisterPage"));
 const LoginPage = lazy(() => import("../../pages/LoginPage/LoginPage"));
 const ContactsPage = lazy(() => import("../../pages/ContactsPage/ContactsPage"));
-
-// export default function App() {
-//   const dispatch = useDispatch();
-  
-//   const loading = useSelector(selectLoading);
-  
-//   const isError = useSelector(selectError);
-  
-//   useEffect(() => {
-//     dispatch(fetchContacts())
-//   }, [dispatch]);
- 
-//   return (
-//     <div className={css.container}>
-//   <AppBar/>
-//   <h1>Phonebook</h1>
-//   <ContactForm />
-//   {loading && <Loader/>}
-//   {isError && <Error>Error message</Error>}
-//   <SearchBox />
-//   <ContactList  />
-// </div>
-//   )
-// }
 
 export default function App() {
   const dispatch = useDispatch();

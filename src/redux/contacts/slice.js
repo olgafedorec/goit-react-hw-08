@@ -1,7 +1,6 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { fetchContacts, addContact, deleteContact, editContact } from "./contactsOps";
-import { selectNameFilter } from "../filters/filtersSlice";
-import { logOut } from "../auth/authOps";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact, editContact } from "./operations";
+import { logOut } from "../auth/operations";
 
 const contactsSlice = createSlice({
     name: "contacts",
@@ -15,7 +14,6 @@ const contactsSlice = createSlice({
     
         reducers: {
             openModal: (state, action) => {
-                // console.log("Modal opened with contact:", action.payload);
                 state.isModalOpen = true;
                 state.editingContact = action.payload;
             },
@@ -74,22 +72,6 @@ const contactsSlice = createSlice({
     },
 });
 
-export const selectIsModalOpen = (state) => state.contacts.isModalOpen;
-
-export const selectEditingContact = (state) => state.contacts.editingContact;
-
-export const selectContacts = (state) => state.contacts.items;
-
-export const selectLoading = (state) => state.contacts.loading;
-
-export const selectError = (state) => state.contacts.error;
-
 export const { openModal, closeModal } = contactsSlice.actions;
-
-export const selectFilteredContacts = createSelector(
-    [selectContacts, selectNameFilter], 
-    (contacts, nameFilter) => {
-        return contacts.filter((contact) => contact.name.toLowerCase().includes(nameFilter.toLowerCase()));
-    });
 
 export const contactsReducer = contactsSlice.reducer;

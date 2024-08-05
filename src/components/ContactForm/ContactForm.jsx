@@ -1,7 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import toast, { Toaster } from "react-hot-toast";
-import { addContact } from '../../redux/contacts/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
 import css from './ContactForm.module.css';
 
 export const ContactForm = () => {

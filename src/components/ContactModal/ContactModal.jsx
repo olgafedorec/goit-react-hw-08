@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'react-modal';
-import { editContact } from '../../redux/contacts/contactsOps';
-import { closeModal, selectIsModalOpen, selectEditingContact } from '../../redux/contacts/contactsSlice';
+import { editContact } from '../../redux/contacts/operations';
+import { selectIsModalOpen, selectEditingContact } from '../../redux/contacts/selectors';
+import { closeModal } from '../../redux/contacts/slice';
 import { Formik, Form, Field } from 'formik';
 import { BsX } from "react-icons/bs";
 import css from './ContactModal.module.css';
